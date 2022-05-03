@@ -26,9 +26,18 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    implementation("com.slack.api:slack-api-client:1.22.0")
+    // Add these dependencies if you want to use the Kotlin DSL for building rich messages
+//    implementation("com.slack.api:slack-api-model-kotlin-extension:1.22.0")
+//    implementation("com.slack.api:slack-api-client-kotlin-extension:1.22.0")
+
+
     compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
+    testImplementation("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
