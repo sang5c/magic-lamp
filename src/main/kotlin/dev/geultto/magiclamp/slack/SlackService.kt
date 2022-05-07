@@ -3,20 +3,19 @@ package dev.geultto.magiclamp.slack
 import com.slack.api.Slack
 import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
-import com.slack.api.methods.request.conversations.ConversationsListRequest
 import com.slack.api.methods.request.conversations.ConversationsMembersRequest
 import com.slack.api.methods.request.users.UsersInfoRequest
 import org.springframework.stereotype.Service
 
 @Service
-class SlackService(private val slackProperties: SlackProperties) {
+class SlackService() {
 
-    val client: MethodsClient = Slack.getInstance().methods(slackProperties.token)
+    val client: MethodsClient = Slack.getInstance().methods(
+        System.getenv("SLACK_BOT_TOKEN")
+    )
 
     fun findChannels(): MutableList<SlackChannel>? {
-        val result = client.conversationsList { r: ConversationsListRequest.ConversationsListRequestBuilder ->
-            r.token(slackProperties.token)
-        }
+        val result = client.conversationsList { null }
         return result.channels.stream()
             .map { c -> SlackChannel(c.id, c.name) }
             .toList()
@@ -46,7 +45,6 @@ class SlackService(private val slackProperties: SlackProperties) {
         val result = client.chatPostMessage { r: ChatPostMessageRequest.ChatPostMessageRequestBuilder ->
             r.channel("CSCB3M43G")
                 .text("pong")
-                .token(System.getenv("SLACK_BOT_TOKEN"))
         }
         println(result.isOk)
     }
