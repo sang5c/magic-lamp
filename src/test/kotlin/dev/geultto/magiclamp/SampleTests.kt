@@ -6,6 +6,7 @@ import com.slack.api.methods.request.conversations.ConversationsListRequest.Conv
 import com.slack.api.methods.request.conversations.ConversationsMembersRequest.ConversationsMembersRequestBuilder
 import com.slack.api.model.Conversation
 import lombok.extern.slf4j.Slf4j
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.springframework.boot.context.properties.EnableConfigurationProperties
@@ -15,6 +16,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 
 
+@Disabled
 @Slf4j
 @ActiveProfiles("test")
 @EnableConfigurationProperties(SampleProperties::class)
