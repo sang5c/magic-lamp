@@ -46,6 +46,7 @@ class SlackService(private val slackProperties: SlackProperties) {
         val result = client.chatPostMessage { r: ChatPostMessageRequest.ChatPostMessageRequestBuilder ->
             r.channel("CSCB3M43G")
                 .text("pong")
+                .token(System.getenv("SLACK_BOT_TOKEN"))
         }
         println(result.isOk)
     }
