@@ -2,6 +2,7 @@ package dev.geultto.magiclamp.slack
 
 import com.slack.api.Slack
 import com.slack.api.methods.MethodsClient
+import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import com.slack.api.methods.request.conversations.ConversationsListRequest
 import com.slack.api.methods.request.conversations.ConversationsMembersRequest
 import com.slack.api.methods.request.users.UsersInfoRequest
@@ -38,5 +39,14 @@ class SlackService(private val slackProperties: SlackProperties) {
             userInfo.profile.displayName,
             userInfo.profile.realName
         )
+    }
+
+    fun pingPong() {
+        // Initialize an API Methods client with the given token
+        val result = client.chatPostMessage { r: ChatPostMessageRequest.ChatPostMessageRequestBuilder ->
+            r.channel("CSCB3M43G")
+                .text("pong")
+        }
+        println(result.isOk)
     }
 }
