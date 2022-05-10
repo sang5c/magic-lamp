@@ -5,12 +5,16 @@ import com.slack.api.methods.MethodsClient
 import com.slack.api.methods.request.chat.ChatPostMessageRequest
 import com.slack.api.methods.request.conversations.ConversationsMembersRequest
 import com.slack.api.methods.request.users.UsersInfoRequest
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
 @Service
 class SlackService() {
 
-    val client: MethodsClient = Slack.getInstance().methods(
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
+
+    private val client: MethodsClient = Slack.getInstance().methods(
         System.getenv("SLACK_BOT_TOKEN")
     )
 
@@ -46,6 +50,7 @@ class SlackService() {
             r.channel("CSCB3M43G")
                 .text("pong")
         }
-        println(result.isOk)
+        log.info("$result")
+        log.info("${result.isOk}")
     }
 }
